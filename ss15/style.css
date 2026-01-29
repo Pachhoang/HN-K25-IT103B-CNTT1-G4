@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  max-width: 1711px;
+  margin: auto;
+  background-color: #f5f5f5;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.header h1 {
+  font-size: 30px;
+  letter-spacing: 2%;
+  font-weight: 500;
+}
+.header a {
+  text-decoration: none;
+  color: rgba(73, 187, 189, 1);
+  font-size: 20px;
+  font-weight: 700;
+}
+.list-items {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.list-items .item {
+  flex: 1 1 calc(25% - 50px);
+  background-color: #fff;
+  border-radius: 20px;
+}
+.list-items .item .item-container {
+  padding: 36px;
+}
+.list-items .item .item-container > img {
+  width: 100%;
+  border-radius: 20px;
+}
+.list-items .item .item-container h3 {
+  margin-top: 20px;
+  font-size: 24px;
+  color: rgba(37, 38, 65, 1);
+}
+.list-items .item .item-container > p {
+  font-size: 18px;
+  color: rgba(105, 105, 132, 1);
+  line-height: 180%;
+  margin-top: 24px;
+}
+.list-items .item .item-container .infomation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.list-items .item .item-container .infomation .user {
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+.list-items .item .item-container .infomation .user img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.list-items .item .item-container .infomation .price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.list-items .item .item-container .infomation .info-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(105, 105, 132, 1);
+  font-weight: 500;
+}
+.list-items .item .item-container .infomation .user {
+  font-size: 18px;
+  font-weight: 500;
+}
+.list-items .item .item-container .infomation .price p:first-child {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  text-decoration: line-through;
+}
+.list-items .item .item-container .infomation .price p:last-child {
+  color: rgba(73, 187, 189, 1);
+  font-size: 24px;
+  font-weight: 700;
+}
