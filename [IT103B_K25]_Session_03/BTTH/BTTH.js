@@ -67,6 +67,9 @@ if (pass) {
                 break;
             case 3:
                 alert("Hẹn gặp lại!");
+                break;
+            default:
+                alert("Bạn Nên nhập từ 1- > 3");
         }
     }while(choose  !== 3);
   
