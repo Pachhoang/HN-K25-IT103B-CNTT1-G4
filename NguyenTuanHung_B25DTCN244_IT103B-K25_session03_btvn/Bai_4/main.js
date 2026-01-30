@@ -5,7 +5,9 @@ let availableCountMany = 0;
 let totalBook = 0;
 
 while (true) {
-  let extendCheckQuestion = prompt("Tiếp tục kiểm kê sách tiếp theo? (có/không)");
+  let extendCheckQuestion = prompt(
+    "Tiếp tục kiểm kê sách tiếp theo? (có/không)",
+  );
 
   if (extendCheckQuestion === null) {
     break;
@@ -70,8 +72,6 @@ while (true) {
       lossCount++;
       break;
   }
-
-  
 }
 
 console.log("Tổng số sách đã kiểm kê:", totalBook);
