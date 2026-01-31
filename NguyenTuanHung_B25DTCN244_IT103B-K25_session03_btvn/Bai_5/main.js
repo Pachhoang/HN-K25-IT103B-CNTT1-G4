@@ -8,7 +8,9 @@ while (true) {
     "Có yêu cầu đặt mượn trước mới không? (có/không)",
   );
 
-  if (continueQuestion === null) break;
+  if (continueQuestion === null) {
+    break;
+  }
 
   continueQuestion = continueQuestion.toLowerCase();
 
