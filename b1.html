@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let borrow = parseInt(prompt("Hôm nay có bao nhiêu lượt mượn sách?"));
+
+        while (isNaN(borrow) || borrow <= 0) {
+            borrow = parseInt(prompt("Vui lòng nhập một số nguyên dương:"));
+        }
+        let allBorrow = 0;
+
+        for (let i = 1; i <= borrow; i++) {
+            let username = prompt(`Lượt ${i}: Tên người mượn?`);
+            let bookName = prompt(`Lượt ${i}: Tên sách?`);
+            let day = parseInt(prompt(`Lượt ${i}: Số ngày mượn (1-30)?`));
+
+            while (isNaN(day) || day < 1 || day > 30) {
+                day = parseInt(prompt(`Lượt ${i}: Vui lòng nhập số ngày từ 1 đến 30:`));
+            }
+            if (day > 14) {
+                console.log("Cảnh báo: Thời gian mượn vượt quy định (tối đa 14 ngày)");
+            } else {
+                console.log("Mượn thành công");
+            }
+
+            allBorrow++;
+        }
+
+        console.log(`Tổng số lượt mượn trong ngày: ${allBorrow}`);
+    </script>
+</body>
+
+</html>

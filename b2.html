@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         let back = parseInt(prompt("Hôm nay có bao nhiêu lượt trả sách?"));
+
+        while (isNaN(back) || back <= 0) {
+            back = parseInt(prompt("Vui lòng nhập một số nguyên dương:"));
+        }
+        let allBack = 0;
+        let late=0;
+
+        for (let i = 1; i <= back; i++) {
+            let username = prompt(`Lượt ${i}: Tên người trả`);
+            let bookName = prompt(`Lượt ${i}: Tên sách`);
+            let day = parseInt(prompt(`Lượt ${i}: Số ngày mượn thực tế (1-30)`));
+
+            while (isNaN(day) || day < 1 || day > 30) {
+                day = parseInt(prompt(`Lượt ${i}: Vui lòng nhập số ngày từ 1 đến 30:`));
+            }
+            if (day <= 14) {
+                console.log("Trả đúng hạn");
+            }else if(day>=15 ||day<21 ) {
+                console.log("Trả muộn nhẹ" + " Phạt nhắc nhở");
+                late++;
+            }else if(day>21){
+                console.log("Quá hạn nghiêm trọng" + " Cần ghi biên bản phạt");
+                lat++;
+                
+            }
+
+            allBack++;
+        }
+
+        console.log(`Tổng số lượt trả sách trong ngày: ${allBack}`);
+        console.log(`Tổng số lượt trả muộn: ${late}`);
+        
+    </script>
+</body>
+</html>
