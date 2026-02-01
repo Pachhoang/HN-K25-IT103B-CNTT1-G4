@@ -14,9 +14,9 @@ while (password != "admin123") {
 }
 
 if (!flag) {
-  console.log("Hệ thống bị khóa");
+  alert("Hệ thống bị khóa");
 } else {
-  console.log("Đăng nhập thành công");
+  alert("Đăng nhập thành công");
 
   let choose;
   while (choose != 3) {
@@ -54,7 +54,7 @@ if (!flag) {
         }
       }
     } else if (choose === 3) {
-      console.log("Hẹn gặp lại!");
+      alert("Hẹn gặp lại!");
     } else {
       console.log("Lựa chọn không hợp lệ");
     }
