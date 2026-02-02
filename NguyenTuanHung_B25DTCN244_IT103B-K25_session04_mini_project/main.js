@@ -1,0 +1,136 @@
+let attempts = 0;
+let loggedIn = false;
+
+while (attempts < 3) {
+  let user = prompt("Nhập tài khoản:");
+  let pass = prompt("Nhập mật khẩu:");
+
+  if (user === "admin" && pass === "12345") {
+    alert("Đăng nhập thành công!");
+    loggedIn = true;
+    break;
+  } else {
+    attempts++;
+    alert(`Đăng nhập sai! Còn ${3 - attempts} lần thử.`);
+  }
+}
+
+if (!loggedIn) {
+  alert("Hệ thống bị khóa!");
+} else {
+  let option;
+
+  do {
+    option = Number(
+      prompt(
+        "MENU HỆ THỐNG\n" +
+          "1. Phân loại mã sách\n" +
+          "2. Thiết kế sơ đồ kho\n" +
+          "3. Dự toán phí bảo trì\n" +
+          "4. Tìm mã sách may mắn\n" +
+          "5. Thoát\n" +
+          "Nhập lựa chọn (1-5):",
+      ),
+    );
+
+    switch (option) {
+      case 1: {
+        let total = 0;
+        let evenCount = 0;
+        let oddCount = 0;
+
+        while (true) {
+          let bookCode = Number(prompt("Nhập mã sách (0 để dừng):"));
+          if (isNaN(bookCode)) continue;
+          if (bookCode === 0) break;
+
+          total++;
+          if (bookCode % 2 === 0) evenCount++;
+          else oddCount++;
+        }
+
+        console.log("Tổng mã sách:", total);
+        console.log("Mã chẵn:", evenCount);
+        console.log("Mã lẻ:", oddCount);
+        alert("Đã phân loại xong (xem Console)");
+        break;
+      }
+
+      case 2: {
+        let rowCount = Number(prompt("Nhập số hàng:"));
+        let colCount = Number(prompt("Nhập số cột:"));
+
+        if (
+          rowCount <= 0 ||
+          colCount <= 0 ||
+          isNaN(rowCount) ||
+          isNaN(colCount)
+        ) {
+          alert("Dữ liệu không hợp lệ!");
+          break;
+        }
+
+        for (let r = 1; r <= rowCount; r++) {
+          let line = "";
+          for (let c = 1; c <= colCount; c++) {
+            let cell = `[${r}-${c}]`;
+            if (r === c) cell += "(Ưu tiên)";
+            line += cell + " ";
+          }
+          console.log(line);
+        }
+        alert("Đã in sơ đồ kho (xem Console)");
+        break;
+      }
+
+      case 3: {
+        let bookAmount = Number(prompt("Nhập số lượng sách:"));
+        let costPerBook = Number(prompt("Nhập phí bảo trì 1 cuốn:"));
+        let yearCount = Number(prompt("Nhập số năm dự toán:"));
+
+        if (isNaN(bookAmount) || isNaN(costPerBook) || isNaN(yearCount)) {
+          alert("Dữ liệu không hợp lệ!");
+          break;
+        }
+
+        for (let y = 1; y <= yearCount; y++) {
+          let totalCost = bookAmount * costPerBook;
+          console.log(`Năm ${y}: ${totalCost.toLocaleString()} VNĐ`);
+          costPerBook *= 1.1;
+        }
+        alert("Đã in dự toán (xem Console)");
+        break;
+      }
+
+      case 4: {
+        let limit = Number(prompt("Nhập N:"));
+        if (isNaN(limit) || limit <= 0) {
+          alert("N không hợp lệ!");
+          break;
+        }
+
+        let count = 0;
+        let result = "";
+
+        for (let i = 1; i <= limit; i++) {
+          if (i % 3 === 0 && i % 5 !== 0) {
+            result += i + " ";
+            count++;
+          }
+        }
+
+        console.log(result || "Không có mã phù hợp");
+        console.log("Tổng số mã may mắn:", count);
+        alert("Đã tìm xong (xem Console)");
+        break;
+      }
+
+      case 5:
+        alert("Hẹn gặp lại!");
+        break;
+
+      default:
+        alert("Lựa chọn không hợp lệ!");
+    }
+  } while (option !== 5);
+}
