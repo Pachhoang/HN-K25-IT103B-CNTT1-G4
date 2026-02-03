@@ -187,6 +187,3 @@ if (booksId.length > 0) {
 } else {
   console.log("Không còn sách nào.");
 }
-
-
-// 
