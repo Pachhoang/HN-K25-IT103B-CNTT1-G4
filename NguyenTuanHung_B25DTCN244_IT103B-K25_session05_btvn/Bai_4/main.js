@@ -6,7 +6,11 @@ let numberOfBooks;
 
 while (true) {
   numberOfBooks = Number(prompt("Nhập số sách ban đầu:"));
-  if (!isNaN(numberOfBooks) && numberOfBooks > 0 && Number.isInteger(numberOfBooks)) {
+  if (
+    !isNaN(numberOfBooks) &&
+    numberOfBooks > 0 &&
+    Number.isInteger(numberOfBooks)
+  ) {
     break;
   }
   alert("Vui lòng nhập số nguyên dương!");
@@ -32,9 +36,7 @@ for (let i = 0; i < numberOfBooks; i++) {
   let status;
   while (true) {
     status = Number(
-      prompt(
-        "Nhập tình trạng:\n1. Hỏng nhẹ\n2. Hỏng nặng\n3. Cần sửa gấp"
-      )
+      prompt("Nhập tình trạng:\n1. Hỏng nhẹ\n2. Hỏng nặng\n3. Cần sửa gấp"),
     );
     if (status === 1 || status === 2 || status === 3) break;
     alert("Chỉ được chọn 1-3!");
@@ -57,7 +59,7 @@ let removedCount = 0;
 while (true) {
   let choice = Number(
     prompt(
-      "Chọn chức năng:\n1. Sửa tình trạng sách\n2. Loại bỏ sách\n0. Kết thúc"
+      "Chọn chức năng:\n1. Sửa tình trạng sách\n2. Loại bỏ sách\n0. Kết thúc",
     )
   );
 
@@ -73,12 +75,12 @@ while (true) {
         while (true) {
           newStatus = Number(
             prompt(
-              "Chọn tình trạng mới:\n1. Hỏng nhẹ\n2. Hỏng nặng\n3. Cần sửa gấp\n4. Đã sửa xong\n5. Loại bỏ"
+              "Chọn tình trạng mới:\n1. Hỏng nhẹ\n2. Hỏng nặng\n3. Cần sửa gấp\n4. Đã sửa xong\n5. Loại bỏ",
             )
           );
           if (newStatus >= 1 && newStatus <= 5) {
             break;
-          } 
+          }
           alert("Chọn từ 1 đến 5!");
         }
 
@@ -103,14 +105,11 @@ while (true) {
       let statusText = "";
       if (bookStatus[i] === 1) {
         statusText = "Hỏng nhẹ";
-      }
-      else if (bookStatus[i] === 2) {
+      } else if (bookStatus[i] === 2) {
         statusText = "Hỏng nặng";
-      }
-      else if (bookStatus[i] === 3) {
+      } else if (bookStatus[i] === 3) {
         statusText = "Cần sửa gấp";
-      }
-      else {
+      } else {
         statusText = "Đã sửa xong";
       }
 
@@ -140,14 +139,11 @@ while (true) {
       let statusText = "";
       if (bookStatus[i] === 1) {
         statusText = "Hỏng nhẹ";
-      }
-      else if (bookStatus[i] === 2) {
+      } else if (bookStatus[i] === 2) {
         statusText = "Hỏng nặng";
-      }
-      else if (bookStatus[i] === 3) {
+      } else if (bookStatus[i] === 3) {
         statusText = "Cần sửa gấp";
-      }
-      else {
+      } else {
         statusText = "Đã sửa xong";
       }
 
@@ -169,17 +165,14 @@ if (booksId.length > 0) {
   console.log("Danh sách sách còn lại:");
   for (let i = 0; i < booksId.length; i++) {
     let statusText = "";
-    if (bookStatus[i] === 1){
-        statusText = "Hỏng nhẹ";
-    }
-    else if (bookStatus[i] === 2){
-        statusText = "Hỏng nặng";
-    }
-    else if (bookStatus[i] === 3){
-        statusText = "Cần sửa gấp";
-    }
-    else {
-        statusText = "Đã sửa xong";
+    if (bookStatus[i] === 1) {
+      statusText = "Hỏng nhẹ";
+    } else if (bookStatus[i] === 2) {
+      statusText = "Hỏng nặng";
+    } else if (bookStatus[i] === 3) {
+      statusText = "Cần sửa gấp";
+    } else {
+      statusText = "Đã sửa xong";
     }
 
     console.log(`${i + 1}. ${booksId[i]} - ${booksName[i]} - ${statusText}`);
