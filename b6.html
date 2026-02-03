@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let totalFeedbacks = 0;
+        let seriousComplaints = 0;
+        let mediumComplaints = 0;
+        let minorComplaints = 0;
+        let improvementSuggestions = 0;
+        let positiveFeedbacks = 0;
+        while (true) {
+            let newFeedback = prompt("Có khiếu nại/phản hồi mới từ bạn đọc không? (có/không)").toLowerCase().trim();
+
+            if (newFeedback === "không") {
+                console.log(`Tổng số phản hồi/khiếu nại đã xử lý: ${totalFeedbacks}`);
+                console.log(`Số khiếu nại nghiêm trọng (mức 3): ${seriousComplaints}`);
+                console.log(`Số khiếu nại trung bình (mức 2): ${mediumComplaints}`);
+                console.log(`Số khiếu nại nhẹ (mức 1): ${minorComplaints}`);
+                console.log(`Số đề xuất cải thiện: ${improvementSuggestions}`);
+                console.log(`Số phản hồi tích cực: ${positiveFeedbacks}`);
+                break;
+            }
+
+            if (newFeedback !== "có") {
+                console.log("Vui lòng nhập 'có' hoặc 'không'.");
+                continue;
+            }
+
+            let readerName = prompt("Tên bạn đọc?").trim();
+            let readerCardCode = prompt("Mã thẻ bạn đọc (nếu có, có thể để trống)?").trim();
+            let feedbackType = parseInt(prompt("Loại phản hồi (1 = Phàn nàn / Khiếu nại, 2 = Đề xuất cải thiện, 3 = Phản hồi tích cực / Khen ngợi)?"));
+
+            let severityLevel = null;
+            if (feedbackType === 1) {
+                severityLevel = parseInt(prompt("Mức độ nghiêm trọng (1 = Nhẹ, 2 = Trung bình, 3 = Nghiêm trọng)?"));
+            }
+
+            let content = prompt("Nội dung ngắn gọn?").trim();
+            let isValid = true;
+            if (readerName === "" || isNaN(feedbackType) || feedbackType < 1 || feedbackType > 3 || content === "") {
+                isValid = false;
+            }
+            if (feedbackType === 1 && (isNaN(severityLevel) || severityLevel < 1 || severityLevel > 3)) {
+                isValid = false;
+            }
+            if (!isValid) {
+                console.log("Thông tin không hợp lệ. Vui lòng nhập lại từ đầu.");
+                continue;
+            }
+
+            totalFeedbacks++;
+
+            if (feedbackType === 1 && severityLevel === 3) {
+                seriousComplaints++;
+                console.log("→ Chuyển ngay lãnh đạo - Khiếu nại nghiêm trọng");
+            } else if (feedbackType === 1 && severityLevel === 2) {
+                mediumComplaints++;
+                console.log("→ Ghi nhận, sẽ xử lý trong ngày - Khiếu nại trung bình");
+            } else if (feedbackType === 1 && severityLevel === 1) {
+                minorComplaints++;
+                console.log("→ Xử lý ngay tại quầy - Khiếu nại nhẹ");
+            } else if (feedbackType === 2) {
+                improvementSuggestions++;
+                console.log("→ Cảm ơn! Đề xuất đã được ghi nhận");
+            } else if (feedbackType === 3) {
+                positiveFeedbacks++;
+                console.log("→ Cảm ơn bạn đã phản hồi tích cực!");
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let totalRequests = 0; 
+        let successfulReservations = 0; 
+        let rejectedRequests = 0;
+        let pendingRequests = 0; 
+
+        while (true) {
+
+            let newRequest = prompt("Có yêu cầu đặt mượn trước mới không? (có/không)").toLowerCase().trim();
+
+            if (newRequest === "không") {
+                console.log(`Tổng số yêu cầu đã xử lý: ${totalRequests}`);
+                console.log(`Số yêu cầu được đặt trước thành công: ${successfulReservations}`);
+                console.log(`Số yêu cầu bị từ chối: ${rejectedRequests}`);
+                console.log(`Số yêu cầu chờ xét duyệt: ${pendingRequests}`);
+                break; 
+            }
+            if (newRequest !== "có") {
+                console.log("Vui lòng nhập 'có' hoặc 'không'.");
+                continue; 
+            }
+            let readerName = prompt("Tên bạn đọc?").trim();
+            let bookCode = prompt("Mã sách muốn đặt trước?").trim();
+            let bookName = prompt("Tên sách?").trim(); 
+            let estimatedDays = parseInt(prompt("Số ngày dự kiến chờ (≥1)?"));
+            let priority = parseInt(prompt("Ưu tiên (1 = Sinh viên bình thường, 2 = Giảng viên/Nghiên cứu sinh, 3 = Nhân viên thư viện / Đặc cách)?"));
+
+            if (readerName === "" || bookCode === "" || bookName === "" || isNaN(estimatedDays) || estimatedDays < 1 || isNaN(priority) || priority < 1 || priority > 3) {
+                console.log("Thông tin không hợp lệ. Vui lòng nhập lại từ đầu.");
+                continue; 
+            }
+
+            totalRequests++;
+
+            if (estimatedDays > 45) {
+                rejectedRequests++;
+                console.log("Từ chối: Thời gian chờ quá lâu (>45 ngày)");
+            } else if (priority === 3) {
+                successfulReservations++;
+                console.log("Đặt trước thành công - Ưu tiên đặc cách cao nhất");
+            } else if (priority === 2 && estimatedDays <= 30) {
+                successfulReservations++;
+                console.log("Đặt trước thành công - Ưu tiên giảng viên/nghiên cứu");
+            } else if (priority === 1 && estimatedDays <= 21) {
+                successfulReservations++;
+                console.log("Đặt trước thành công");
+            } else {
+                pendingRequests++;
+                console.log("Đặt trước tạm thời - Chờ xét duyệt thêm");
+            }
+        }
+    </script>
+</body>
+
+</html>

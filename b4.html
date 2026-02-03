@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let totalBooks = 0;
+        let lostBooks = 0;
+        let outOfStockBooks = 0;
+        let highStockBooks = 0;
+        let normalStockBooks = 0;
+
+        while (true) {
+
+            let continueCheck = prompt("Tiếp tục kiểm kê sách tiếp theo? (có/không)").toLowerCase().trim();
+
+            if (continueCheck === "không") {
+                console.log(`Tổng số sách đã kiểm kê: ${totalBooks} cuốn`);
+                console.log(`Số sách mất: ${lostBooks} cuốn`);
+                console.log(`Số sách hết hàng: ${outOfStockBooks} cuốn`);
+                break;
+            }
+
+            if (continueCheck !== "có") {
+                console.log("Vui lòng nhập 'có' hoặc 'không'.");
+                continue;
+            }
+
+            let bookCode = prompt("Mã sách?").trim();
+            let bookName = prompt("Tên sách?").trim();
+            let actualQuantity = parseInt(prompt("Số lượng thực tế đang có trong kho (≥0)?"));
+            let condition = parseInt(prompt("Tình trạng sách (1 - Bình thường, 2 - Mất)?"));
+
+            if (bookCode === "" || bookName === "" || isNaN(actualQuantity) || actualQuantity < 0 || isNaN(condition) || (condition !== 1 && condition !== 2)) {
+                console.log("Thông tin không hợp lệ. Vui lòng nhập lại từ đầu.");
+                continue;
+            }
+
+            totalBooks++;
+            if (condition === 2) {
+                lostBooks++;
+            } else if (condition === 1 && actualQuantity === 0) {
+                outOfStockBooks++;
+            } else if (condition === 1 && actualQuantity >= 10) {
+                highStockBooks++;
+            } else if (condition === 1 && actualQuantity >= 1 && actualQuantity <= 9) {
+
+                normalStockBooks++;
+            }
+        }
+    </script>
+</body>
+
+</html>
