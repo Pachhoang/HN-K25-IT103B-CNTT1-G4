@@ -1,10 +1,8 @@
 let numberArrray = [];
 let choose;
-let size = 0;
 let currentIndex = 0;
 let nums;
 let line;
-
 do {
     choose = +prompt(`  ================== MENU ===================
 1. Nhập số phần tử cần nhập và giá trị các phần tử
@@ -26,107 +24,128 @@ Lựa chọn của bạn:
                 currentIndex = +prompt("Vui LÒNG NHẬP LẠI số phần tử cần nhập vào");
             }
             for (let i = 0; i < currentIndex; i++) {
-                nums = +prompt(`Vui lòng nhập số thứ ${i + 1 + size}`);
+                nums = +prompt(`Vui lòng nhập số thứ ${i + 1}`);
                 while (isNaN(nums)) {
                     alert("Số bạn nhập không phải là số !! ");
                     nums = +prompt(`Vui lòng nhập số thứ ${i + 1}`);
                 }
                 numberArrray.push(nums);
             }
-            size += currentIndex;
             alert("Nhập mảng thành công !");
             break;
         case 2:
-            for (let i = 0; i < size; i++) {
-                console.log(numberArrray[i]);
+            if (numberArrray.length > 0) {
+                console.log("Các phần tử bên trong mảng !");
+                for (let i = 0; i < numberArrray.length; i++) {
+                    console.log(numberArrray[i]);
+                }
+            } else {
+                alert("Bạn phải thêm phần tử trước khi chọn chức năng này !");
             }
             break;
         case 3:
-            let sumOfEvenNumber = 0;
-            line = "";
-            for (let ele of numberArrray) {
-                if (ele % 2 === 0) {
-                    sumOfEvenNumber += ele;
-                    line += `${ele} `;
+            if (numberArrray.length > 0) {
+                let sumOfEvenNumber = 0;
+                line = "";
+                for (let ele of numberArrray) {
+                    if (ele % 2 === 0) {
+                        sumOfEvenNumber += ele;
+                        line += `${ele} `;
+                    }
                 }
+                console.log(`Các giá trị của phần tử chẵn bao gồm:  ${line.trim() === "" ? "Không có số chẵn" : line}`);
+                console.log(`Tổng của các giá trị chẵn là:  ${sumOfEvenNumber}`);
+            } else {
+                alert("Bạn phải thêm phần tử trước khi chọn chức năng này !");
             }
-            console.log(`Các giá trị của phần tử chẵn bao gồm:  ${line}`);
-            console.log(`Tổng của các giá trị chẵn là:  ${sumOfEvenNumber}`);
+
             break;
         case 4:
-            if (numberArrray.length === 0) {
-                alert("Mảng đang rỗng, vui lòng nhập dữ liệu trước");
-                break;
+            if (numberArrray.length > 0) {
+                    let max = numberArrray[0];
+                    let min = numberArrray[0];
+                    for (let elet of numberArrray) {
+                        if (elet > max) {
+                            max = elet;
+                        }
+                        if (elet < min) {
+                            min = elet;
+                        }
+                    }
+                    console.log(`Giá trị lớn nhất trong mảng là : ${max}`);
+                    console.log(`Giá trị nhỏ nhất trong mảng là : ${min}`);
             } else {
-                let max = numberArrray[0];
-                let min = numberArrray[0];
-                for (let elet of numberArrray) {
-                    if (elet > max) {
-                        max = elet;
-                    }
-                    if (elet < min) {
-                        min = elet;
-                    }
-                }
-                console.log(`Giá trị lớn nhất trong mảng là : ${max}`);
-                console.log(`Giá trị nhỏ nhất trong mảng là : ${min}`);
+                alert("Bạn phải thêm phần tử trước khi chọn chức năng này !");
             }
             break;
         case 5:
-            console.log(`Các phần tử là số nguyên tố là: `);
-            line = "";
-            let isPrime;
-            let sumOfPrimeNumber = 0;
-            for (let nums of numberArrray) {
-                isPrime = true;
-                if (nums <= 1) {
-                    isPrime = false;
-                } else {
-                    for (let i = 2; i * i <= nums; i++) {
-                        if (nums % i === 0) {
-                            isPrime = false;
-                            break;
+            if (numberArrray.length > 0) {
+                console.log(`Các phần tử là số nguyên tố là: `);
+                line = "";
+                let isPrime;
+                let sumOfPrimeNumber = 0;
+                for (let nums of numberArrray) {
+                    isPrime = true;
+                    if (nums <= 1) {
+                        isPrime = false;
+                    } else {
+                        for (let i = 2; i * i <= nums; i++) {
+                            if (nums % i === 0) {
+                                isPrime = false;
+                                break;
+                            }
                         }
                     }
+                    if (isPrime) {
+                        line += `${nums} `;
+                        sumOfPrimeNumber += nums;
+                    }
                 }
-                if (isPrime) {
-                    line += `${nums} `;
-                    sumOfPrimeNumber += nums;
-                }
-            }
 
-            console.log(`${line}`);
-            console.log(`Tổng các số nguyên tố trong mảng là`);
-            console.log(`${sumOfPrimeNumber}`);
+                console.log(`${line}`);
+                console.log(`Tổng các số nguyên tố trong mảng là`);
+                console.log(`${sumOfPrimeNumber}`);
+            } else {
+                alert("Bạn phải thêm phần tử trước khi chọn chức năng này !");
+            }
             break;
         case 6:
-            let numberInput;
-            numberInput = +prompt("Vui lòng nhập một số thêm vào mảng");
-            while (isNaN(numberInput)) {
-                alert("Số bạn nhập vào phải là số ! ");
-                numberInput = +prompt("Vui lòng nhập một số thêm vào mảng");
-            }
-            let count = 0;
-            for (let ele of numberArrray) {
-                if (ele === numberInput) {
-                    count++;
+            if (numberArrray.length > 0) {
+                let numberInput;
+                numberInput = +prompt("Vui lòng nhập một số cần thống kê");
+                while (isNaN(numberInput)) {
+                    alert("Số bạn nhập vào phải là số ! ");
+                    numberInput = +prompt("Vui lòng nhập một số cần thống kê");
                 }
+                let count = 0;
+                for (let ele of numberArrray) {
+                    if (ele === numberInput) {
+                        count++;
+                    }
+                }
+                alert(`Trong mảng có ${count} phần tử bằng ${numberInput}`);
+            } else {
+                alert("Bạn phải thêm phần tử trước khi chọn chức năng này !");
             }
-            alert(`Trong mảng có ${count} phần tử bằng ${numberInput}`);
             break;
         case 7:
-            let theIndexWannaAdd = +prompt(`Vui lòng nhập vị trí của trong mảng từ 0 đến ${numberArrray.length }`);
-            while (theIndexWannaAdd > numberArrray.length  || theIndexWannaAdd < 0) {
-                alert("Chỉ số bạn chọn không hợp lý !");
-                theIndexWannaAdd = +prompt(`Vui lòng nhập vị trí của trong mảng từ 0 đến ${numberArrray.length }`);
+            if (numberArrray.length > 0) {
+                let theIndexWannaAdd = +prompt(`Vui lòng nhập vị trí của trong mảng từ 0 đến ${numberArrray.length}`);
+                while (theIndexWannaAdd > numberArrray.length || theIndexWannaAdd < 0) {
+                    alert("Chỉ số bạn chọn không hợp lý !");
+                    theIndexWannaAdd = +prompt(`Vui lòng nhập vị trí của trong mảng từ 0 đến ${numberArrray.length}`);
+                }
+                nums = +prompt("Vui lòng chọn số mà bạn muốn thêm vào");
+                while (isNaN(nums)) {
+                    alert("Số bạn nhập vào phải là số ! ");
+                    nums = +prompt("Vui lòng nhập một số thêm vào mảng");
+                }
+                numberArrray.splice(theIndexWannaAdd, 0, nums);
+                alert("Thêm phần tử thành công !");
+            } else {
+                alert("Bạn phải thêm phần tử trước khi chọn chức năng này !");
             }
-            nums = +prompt("Vui lòng chọn số mà bạn muốn thêm vào");
-            while (isNaN(nums)) {
-                alert("Số bạn nhập vào phải là số ! ");
-                nums = +prompt("Vui lòng nhập một số thêm vào mảng");
-            }
-            numberArrray.splice(theIndexWannaAdd, 0, nums);
-            alert("Thêm phần tử thành công !");
+
             break;
         case 8:
             alert("Hẹn gặp lại :)");
