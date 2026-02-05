@@ -4,7 +4,6 @@ let students=student.split(",")
 for(let i=0;i<students.length;i++){ 
     students[i]=students[i].trim();
     console.log();
-    
 }
 let studentReverse= students.reverse();
 console.log(students);

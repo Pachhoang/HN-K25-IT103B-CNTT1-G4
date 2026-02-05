@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        while (true) {
+            let input = prompt("Nhập vào mảng số nguyên cách nhau bằng dấu phẩy(10 phần tử):");
+            let arr = input.split(",").map(Number);
+            if (arr.length > 10) {
+                alert("Vui lòng nhập đúng 10 phần tử!");
+                continue;
+            }
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            alert(`Số lớn nhất trong mảng là: ${max},nằm tại vị trí thứ ${arr.indexOf(max) }`);
+            break;
+            if (arr.length === 0) {
+                alert("Không có số lớn nhất");
+                break;
+            }
+            
+        }
+    </script>
+</body>
+</html>

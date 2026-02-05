@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        while (true) {
+            let n=prompt("Nhập vào số phần tử của mảng:");
+            n=Number(n);
+            if(isNaN(n) || n<0){
+                alert("Vui lòng nhập số phần tử hợp lệ!");
+                continue;
+            }else if(n===0){
+                alert("Mảng không có phần tử ");
+                break;
+            }
+            let input = prompt(`Nhập vào mảng số nguyên cách nhau bằng dấu phẩy(${n} phần tử):`);
+            let arr = input.split(",").map(Number);
+            if(input.length===0 || arr.length!==n){
+                alert(`Vui lòng nhập đúng ${n} phần tử!`);
+                continue;
+            }
+            let count=0;
+            for (let i = 0; i < arr.length; i++) {
+                if(arr[i]<0){
+                    count++;
+                }
+            }
+            alert(` ${count} số âm trong mảng`);
+        }
+    </script>
+</body>
+</html>

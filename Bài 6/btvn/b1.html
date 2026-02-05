@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        while (true) {
+            let input = prompt("Nhập vào mảng số nguyên cách nhau bằng dấu phẩy(10 phần tử):");
+            let arr = input.split(",").map(Number);
+            if (arr.length !== 10) {
+                alert("Vui lòng nhập đúng 10 phần tử!");
+                continue;
+            }
+            let result = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] >= 10) {
+                    result.push(arr[i]);
+                }
+            }
+            if (result.length === 0) {
+                alert("Không có số nào lớn hơn hoặc bằng 10");
+                break;
+            } else {
+                alert(`Có ${result.length} số ≥ 10: ${result.join(", ")}`);
+            }
+            break;
+        }
+    </script>
+</body>
+
+</html>
