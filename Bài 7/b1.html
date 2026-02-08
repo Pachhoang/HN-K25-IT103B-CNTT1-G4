@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let playerIds = [];
+        let playerPositions = [];
+
+        const positions = ["Thủ môn", "Hậu vệ", "Tiền vệ", "Tiền đạo"];
+
+        function printTeamRoster() {
+            console.log(`\nĐội bóng hiện tại (${playerIds.length} cầu thủ):`);
+
+            for (let i = 0; i < playerIds.length; i++) {
+                console.log(`${i + 1}. ${playerIds[i]} - ${playerPositions[i]}`);
+            }
+        }
+
+        function findPlayersByPosition(position) {
+            let result = [];
+
+            for (let i = 0; i < playerPositions.length; i++) {
+                if (playerPositions[i] === position) {
+                    result.push(i);
+                }
+            }
+
+            return result;
+        }
+
+        let n = parseInt(prompt("Có bao nhiêu cầu thủ cần nhập vào đội bóng? "));
+
+        for (let i = 0; i < n; i++) {
+            console.log(`\nNhập cầu thủ ${i + 1}:`);
+
+            let id;
+            while (true) {
+                id = prompt("Mã cầu thủ: ");
+                if (!playerIds.includes(id)) break;
+                alert("Mã đã tồn tại! Nhập lại.");
+            }
+
+            let posChoice;
+            while (true) {
+                posChoice = parseInt(prompt("Vị trí (1: Thủ môn 2: Hậu vệ 3: Tiền vệ 4: Tiền đạo): "));
+                if (posChoice >= 1 && posChoice <= 4) break;
+                alert("Chọn từ 1 đến 4!");
+            }
+
+            playerIds.push(id);
+            playerPositions.push(positions[posChoice - 1]);
+        }
+
+        let findChoice = parseInt(
+            prompt("Nhập vị trí cầu thủ muốn đếm số lượng (1: Thủ môn 2: Hậu vệ 3: Tiền vệ 4: Tiền đạo): ")
+        );
+
+        let selectedPosition = positions[findChoice - 1];
+
+        printTeamRoster();
+
+        let indexes = findPlayersByPosition(selectedPosition);
+
+        console.log(`\nSố cầu thủ ở vị trí ${selectedPosition}: ${indexes.length}`);
+        console.log(`Các chỉ số cầu thủ ở vị trí ${selectedPosition}: ${indexes.join(", ")}`);
+    </script>
+</body>
+
+</html>

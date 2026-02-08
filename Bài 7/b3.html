@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let players = [];
+
+        const positions = ["Thủ môn", "Hậu vệ", "Tiền vệ", "Tiền đạo"];
+
+        function printTeamRoster() {
+            console.log("\nDanh sách đội bóng:");
+
+            for (let i = 0; i < players.length; i++) {
+                let parts = players[i].split("-");
+
+                let id = parts[0];
+                let name = parts[1];
+                let position = parts[2];
+
+                console.log(`${i + 1}. Mã: ${id} | Tên: ${name} | Vị trí: ${position}`);
+            }
+        }
+
+        function pushPlayer(id, name, position) {
+            let playerString = `${id}-${name}-${position}`;
+            players.push(playerString);
+        }
+
+        let n = parseInt(prompt("Có bao nhiêu cầu thủ cần nhập vào đội bóng? "));
+
+        for (let i = 0; i < n; i++) {
+            console.log(`\nNhập cầu thủ ${i + 1}:`);
+
+            let id;
+
+            while (true) {
+                id = prompt("Mã cầu thủ: ");
+
+                let isDuplicate = false;
+
+                for (let p of players) {
+                    if (p.split("-")[0] === id) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (!isDuplicate) break;
+                alert("Mã đã tồn tại! Nhập lại.");
+            }
+
+            let name;
+
+            while (true) {
+                name = prompt("Tên cầu thủ: ");
+                if (name.trim() !== "") break;
+                alert("Tên không được để trống!");
+            }
+
+            let posChoice;
+
+            while (true) {
+                posChoice = parseInt(prompt("Vị trí (1: Thủ môn 2: Hậu vệ 3: Tiền vệ 4: Tiền đạo): "));
+                if (posChoice >= 1 && posChoice <= 4) break;
+                alert("Chọn từ 1 đến 4!");
+            }
+
+            pushPlayer(id, name, positions[posChoice - 1]);
+        }
+
+        printTeamRoster();
+    </script>
+</body>
+
+</html>

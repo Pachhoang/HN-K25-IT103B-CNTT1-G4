@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let players = [
+            "P001-Nguyễn Văn A-Thủ môn",
+            "P002-Trần Bình-Hậu vệ",
+            "P003-Lê Long-Tiền vệ",
+            "P004-Phạm Anh-Tiền đạo",
+            "P005-An-Tiền đạo"
+        ];
+
+        function getShortestPlayerName() {
+            let shortestName = players[0].split("-")[1];
+
+            for (let player of players) {
+                let name = player.split("-")[1];
+
+                if (name.length < shortestName.length) {
+                    shortestName = name;
+                }
+            }
+
+            return shortestName;
+        }
+
+        function countPlayersWithPositionLengthGreaterThan(length) {
+            let count = 0;
+
+            for (let player of players) {
+                let position = player.split("-")[2];
+
+                if (position.length > length) {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        console.log("Tên cầu thủ ngắn nhất:", getShortestPlayerName());
+
+        console.log(
+            "Số cầu thủ có độ dài tên vị trí > 7:",
+            countPlayersWithPositionLengthGreaterThan(7)
+        );
+    </script>
+</body>
+
+</html>
