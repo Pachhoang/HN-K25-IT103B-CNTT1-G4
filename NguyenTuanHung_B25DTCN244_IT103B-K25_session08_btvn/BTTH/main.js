@@ -37,9 +37,25 @@ function playerFilter(squad) {
   return filterResult.length > 0 ? filterResult : "Không tìm thấy vị trí";
 }
 
-function totalGoal(squad){
-    let goal = squad.reduce((acc, ele) => acc + ele[1], 0);
-    return goal;
+function totalGoal(squad) {
+  let goal = squad.reduce((acc, ele) => acc + ele[1], 0);
+  return goal;
+}
+
+function checkPerformance(squad) {
+  let hasZeroGoal = squad.some((player) => player[1] === 0);
+  console.log(
+    hasZeroGoal
+      ? "Có cầu thủ chưa ghi bàn"
+      : "Không có cầu thủ nào chưa ghi bàn",
+  );
+
+  let allScored = squad.every((player) => player[1] > 0);
+  console.log(
+    allScored
+      ? "Tất cả cầu thủ đều đã ghi bàn"
+      : "Không phải tất cả cầu thủ đều đã ghi bàn",
+  );
 }
 
 do {
@@ -70,7 +86,10 @@ do {
       console.table(playerFilter(squad));
       break;
     case 4:
-        console.log(`Tổng số bàn thắng là ${totalGoal(squad)}`);
-        break;
+      console.log(`Tổng số bàn thắng là ${totalGoal(squad)}`);
+      break;
+    case 5:
+      checkPerformance(squad);
+      break;
   }
 } while (option != 0);
