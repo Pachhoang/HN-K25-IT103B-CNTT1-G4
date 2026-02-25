@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Quản lý kho</title>
+    </head>
+
+    <body>
+
+        <script>
+
+            let names = ["iPhone 15", "Samsung S23", "Oppo Reno", "Xiaomi 13", "Nokia C20"];
+            let prices = [1200, 900, 450, 600, 80];
+            let stocks = [10, 5, 0, 8, 15];
+
+            while (true) {
+
+                let choice = prompt(
+                    "===== QUẢN LÝ KHO HÀNG =====\n" +
+                    "1. Lọc sản phẩm cao cấp (giá > 500)\n" +
+                    "2. Thoát\n\n" +
+                    "Nhập lựa chọn:"
+                );
+
+                if (choice === "1") {
+
+                    let result = "Sản phẩm cao cấp:\n";
+                    let found = false;
+
+                    for (let i = 0; i < prices.length; i++) {
+
+                        if (prices[i] > 500) {
+                            result += "- " + names[i] + "\n";
+                            found = true;
+                        }
+                    }
+
+                    if (found) {
+                        alert(result);
+                    } else {
+                        alert("Không có sản phẩm cao cấp.");
+                    }
+                }
+
+                else if (choice === "2") {
+                    alert("Thoát chương trình!");
+                    break;
+                }
+
+                else {
+                    alert("Lựa chọn không hợp lệ!");
+                }
+            }
+
+        </script>
+
+    </body>
+
+    </html>
+</body>
+
+</html>
