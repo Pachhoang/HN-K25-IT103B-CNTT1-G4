@@ -12,18 +12,15 @@ function reportTopPerformers(minPerformance, players) {
   const filtered = players
     .map((player) => {
       const [name, , goals, assists] = player.split(" - ");
-      return {
-        name: name.trim(),
-        performance: Number(goals) + Number(assists),
-      };
+      return [name.trim(), Number(goals) + Number(assists)];
     })
-    .filter((player) => player.performance >= minPerformance);
+    .filter((player) => player[1] >= minPerformance);
 
   filtered.forEach((player) => {
-    console.log(`${player.name}: ${player.performance}`);
+    console.log(`${player[0]}: ${player[1]}`);
   });
 
-  const total = filtered.reduce((sum, player) => sum + player.performance, 0);
+  const total = filtered.reduce((sum, player) => sum + player[1], 0);
 
   console.log(`Tổng hiệu suất: ${total}`);
 
