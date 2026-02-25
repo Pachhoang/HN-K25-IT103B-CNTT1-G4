@@ -11,14 +11,16 @@ const players = [
 function reportByPosition(players, minGoals = 5) {
   console.log("BÁO CÁO HIỆU SUẤT THEO VỊ TRÍ\n");
 
-  const parsed = players
-    .map((player) => player.split(" - ").map((v) => v.trim()))
+  const filtered = players
+    .map((player) => player.split(" - "))
     .filter((p) => Number(p[2]) >= minGoals);
 
-  const positions = [...new Set(parsed.map((p) => p[1]))];
+  const positions = filtered
+    .map((p) => p[1])
+    .filter((pos, index, arr) => arr.indexOf(pos) === index);
 
   const grouped = positions.map((pos) => {
-    const inPos = parsed.filter((p) => p[1] === pos);
+    const inPos = filtered.filter((p) => p[1] === pos);
     return [
       pos,
       inPos.length,
@@ -45,7 +47,6 @@ function reportByPosition(players, minGoals = 5) {
     },
   );
 
-  console.log("------------------------");
   console.log("Tổng bàn thắng toàn đội :", totalTeamGoals);
 }
 
