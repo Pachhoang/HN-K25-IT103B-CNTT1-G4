@@ -22,9 +22,7 @@ const teamHistory = [
 ];
 
 function generatePlayerSeasonReport(playerName, teamHistory) {
-  const player = teamHistory.find(
-    p => p.name === playerName
-  );
+  const player = teamHistory.find((p) => p.name === playerName);
 
   if (!player) {
     return `Không tìm thấy cầu thủ ${playerName}`;
@@ -40,7 +38,7 @@ function generatePlayerSeasonReport(playerName, teamHistory) {
   let bestSeason = {
     season: "",
     goals: 0,
-    assists: 0
+    assists: 0,
   };
 
   seasons.forEach(([season, stats]) => {
@@ -53,7 +51,7 @@ function generatePlayerSeasonReport(playerName, teamHistory) {
       bestSeason = {
         season,
         goals: stats.goals,
-        assists: stats.assists
+        assists: stats.assists,
       };
     }
   });
@@ -67,14 +65,10 @@ function generatePlayerSeasonReport(playerName, teamHistory) {
       totalGoals,
       totalAssists,
       totalYellowCards,
-      averageGoalsPerMatch: Number(
-        (totalGoals / totalMatches).toFixed(2)
-      ),
-      averageAssistsPerMatch: Number(
-        (totalAssists / totalMatches).toFixed(2)
-      ),
-      bestSeason
-    }
+      averageGoalsPerMatch: Number((totalGoals / totalMatches).toFixed(2)),
+      averageAssistsPerMatch: Number((totalAssists / totalMatches).toFixed(2)),
+      bestSeason,
+    },
   };
 }
 
