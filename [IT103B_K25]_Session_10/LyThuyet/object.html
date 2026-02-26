@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Object (Đối tượng): mô phỏng một đối tượng thực tế
+            VD: Đối tượng con mèo, cái xe ô tô, con người, cái bàn...
+            Gồm 2 thành phần chính:
+                1. Thuộc tính
+                2. Phương thức
+
+            Con mèo : Thuộc tính (Màu mắt, màu lông, cân nặng)
+                      Phương thức (Bắt chuột, kêu...)
+            TẠI SAO LẠI CÓ OBJECT
+            - > Giúp gom nhóm các thuộc tính, phương thức chung cho đối tượng để dễ quản lý, thao tác
+            Bên trong đối tương bao gồm cá cặp KEY và VALUE được ngăn cách với nhau bởi dấu phẩy !
+            1. C_ CREATE Thêm
+            2. R_ Read Hiển thị
+            3. U_
+        */
+       let object = {
+            name: "MIBOMBOOOO",
+            age: 18,
+       };
+       console.log(object["name"]);
+       for(let key in object){
+        console.log("Key: " , object[key]);
+       }
+
+    </script>
+</body>
+</html>
