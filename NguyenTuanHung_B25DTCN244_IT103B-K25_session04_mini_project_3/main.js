@@ -184,7 +184,7 @@ const dataNormalization = () => {
 let running = true;
 
 while (running) {
-  let choice = prompt(
+  let choice = +prompt(
     "====== STUDENT MANAGEMENT SYSTEM ======\n" +
       "1. Create Student\n" +
       "2. Read All Students\n" +
@@ -200,31 +200,31 @@ while (running) {
   );
 
   switch (choice) {
-    case "1":
+    case 1:
       createStudent();
       break;
-    case "2":
+    case 2:
       readAllStudents();
       break;
-    case "3":
+    case 3:
       filterScholarship();
       break;
-    case "4":
+    case 4:
       updateStudent();
       break;
-    case "5":
+    case 5:
       deleteStudent();
       break;
-    case "6":
+    case 6:
       complianceVerification();
       break;
-    case "7":
+    case 7:
       academicStatistics();
       break;
-    case "8":
+    case 8:
       dataNormalization();
       break;
-    case "0":
+    case 0:
       alert("Thoát chương trình. Tạm biệt!");
       running = false;
       break;
