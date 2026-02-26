@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const player = [
+            { name: "Messi", year: 18, salary: 100 },
+            { name: "Ronaldo", year: 20, salary: 95 },
+            { name: "Neymar", year: 12, salary: 90 },
+            { name: "Mbappe", year: 7, salary: 85 },
+            { name: "Haaland", year: 5, salary: 80 },
+            { name: "Modric", year: 22, salary: 70 },
+            { name: "Benzema", year: 19, salary: 75 },
+        ]
+        function analyzeSalary(minYears, teamPlayers) {
+            let totalSalary = 0;
+            let highestPaid = teamPlayers[0];
+            let lowestPaid = teamPlayers[0];
+            for (let i = 0; i < teamPlayers.length; i++) {
+                let player = teamPlayers[i];
+
+                if (player.year >= minYears) {
+                    totalSalary += player.salary;
+                }
+                if (current.salary > highestPaid.salary) {
+                    highestPaid = current;
+                }
+
+                if (current.salary < lowestPaid.salary) {
+                    lowestPaid = current;
+                }
+            }
+
+            return {
+                highestPaid,
+                lowestPaid,
+                totalSalary
+            };
+
+        }
+        let inputYears = Number(prompt("Nhập số năm kinh nghiệm tối thiểu:"));
+
+        if (!isNaN(inputYears)) {
+            let result = analyzeSalary(inputYears, player);
+            console.log("Total salary: ", result);
+            console.log("highestPaid:", {
+                name: result.highestPaid.name,
+                years: result.highestPaid.year,
+                salary: result.highestPaid.salary
+            });
+
+            console.log("lowestPaid:", {
+                name: result.lowestPaid.name,
+                years: result.lowestPaid.year,
+                salary: result.lowestPaid.salary
+            });
+
+        } else {
+            alert("Vui lòng nhập một số hợp lệ!");
+        }
+    </script>
+</body>
+
+</html>
