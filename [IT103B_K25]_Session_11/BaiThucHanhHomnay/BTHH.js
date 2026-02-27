@@ -5,7 +5,7 @@ let students = [
     { id: 4, name: "Pham Thi Dung", age: 19, gpa: 6.8, status: "active" },
 ];
 
-let nextIndex = students.length;
+let nextIndex = students.length+1;
 // chức năng phụ:
 function fornmatStudent(arr){
     return `ID: ${arr.id} | Name: ${arr.name} | Age: ${arr.age} | Status: ${arr.status}`;
@@ -51,9 +51,9 @@ let filterScholarshipCandidates = (arr) => {
     result.forEach(c=>{
         rows += fornmatStudent(c) + `\n`;
     });
-    result += "\n -----------------------------------------------------";
-    result += `\n Total: ${result.length}`; 
-    alert(result);
+    rows += "\n -----------------------------------------------------";
+    rows += `\n Total: ${result.length}`; 
+    alert(rows);
 }
 
 // Chức năng 4: Update Profile
