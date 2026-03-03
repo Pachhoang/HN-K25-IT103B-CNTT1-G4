@@ -691,3 +691,34 @@ do {
       break;
   }
 } while (condition !== 0);
+// const cars = [
+//   { id: "CAR01", brand: "Toyota", year: 2022, price: 25000, electric: false },
+//   { id: "CAR02", brand: "Tesla", year: 2024, price: 50000, electric: true },
+//   { id: "CAR03", brand: "BMW", year: 2021, price: 42000, electric: false },
+//   { id: "CAR04", brand: "Mercedes", year: 2023, price: 48000, electric: false },
+//   { id: "CAR05", brand: "Hyundai", year: 2020, price: 20000, electric: false },
+//   { id: "CAR06", brand: "Kia", year: 2022, price: 22000, electric: false },
+//   { id: "CAR07", brand: "Ford", year: 2019, price: 18000, electric: false },
+//   { id: "CAR08", brand: "Honda", year: 2021, price: 23000, electric: false },
+//   { id: "CAR09", brand: "Mazda", year: 2023, price: 26000, electric: false },
+//   { id: "CAR10", brand: "VinFast", year: 2024, price: 35000, electric: true },
+//   { id: "CAR11", brand: "Audi", year: 2022, price: 45000, electric: false },
+//   { id: "CAR12", brand: "Porsche", year: 2023, price: 90000, electric: false },
+//   {
+//     id: "CAR13",
+//     brand: "Chevrolet",
+//     year: 2018,
+//     price: 15000,
+//     electric: false,
+//   },
+//   { id: "CAR14", brand: "Lexus", year: 2022, price: 47000, electric: false },
+//   { id: "CAR15", brand: "Nissan", year: 2020, price: 21000, electric: false },
+// ];
+
+// const deleteByName = (obj) =>{
+//   let findName = prompt(`Nhập tên hãng xe muốn xóa`);
+//   return result = obj.filter(del => del.brand.toLowerCase().includes(findName) ? false : true);
+// }
+
+// const newCar = deleteByName(cars);
+// console.log(newCar);
