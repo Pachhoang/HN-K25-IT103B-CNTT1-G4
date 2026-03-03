@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const students = [
+            {
+                id: 101,
+                name: "Hoàng Triệu Gia Bách",
+                age: 18,
+                gpa: 10,
+                status: "active",
+                createdAt: null,
+                updatedAt: null,
+                deletedAt: null,
+            },
+            {
+                id: 202,
+                name: "Nguyễn Quý Dũng",
+                age: 18,
+                gpa: 0,
+                status: "inactive",
+                createdAt: null,
+                updatedAt: null,
+                deletedAt: null,
+            },
+            {
+                id: 303,
+                name: "Lê Đình Tùng",
+                age: 18,
+                gpa: 1,
+                status: "active",
+                createdAt: null,
+                updatedAt: null,
+                deletedAt: null,
+            },
+            {
+                id: 404,
+                name: "Nguyễn Tuấn Hưng",
+                age: 18,
+                gpa: 6.7,
+                status: "active",
+                createdAt: null,
+                updatedAt: null,
+                deletedAt: null,
+            },
+            {
+                id: 505,
+                name: "Lê Minh Hiển",
+                age: 18,
+                gpa: 6.9,
+                status: "inactive",
+                createdAt: null,
+                updatedAt: null,
+                deletedAt: null,
+            },
+            {
+                id: 606,
+                name: "Lê Minh Sơn",
+                age: 19,
+                gpa: 10,
+                status: "inactive",
+                createdAt: null,
+                updatedAt: null,
+                deletedAt: null,
+            },
+        ];
+        let choice;
+        do {
+            choice = +prompt(`
+1.Create Student
+2.Update Student
+3.Delete Student
+4.Restore Students
+5.Search By Name
+6. Overiew Student  
+0.Thoát
+    `);
+            switch (choice) {
+                case 1:
+                    createStudents(students);
+                    break;
+                case 2:
+                    updateStudent(students);
+                    break;
+                case 3:
+                    deleteStudent(students);
+                    break;
+                case 4:
+                    restorStudent(students);
+                    break;
+                case 5:
+                    searchByName(students);
+                    break;
+                case 6:
+                    overviewStudent(students);
+                    break;
+                default:
+                    break;
+            }
+        } while (choice !== 0);
+        function createStudents(students) {
+            let id = prompt("Nhập id sinh viên:");
+            let name = prompt("Nhập tên sinh viên:");
+            let age = prompt("Nhập tuổi sinh viên");
+            let gpa = prompt("Nhập GPA sinh viên:");
+            let status = prompt("Nhập trạng thái sinh viên(active/inactive):");
+
+            let newStudent = {
+                id,
+                name,
+                age,
+                gpa,
+                status,
+                createdAt: new Date(),
+                updatedAt: null,
+                deletedAt: null,
+            };
+            students.unshift(newStudent);
+            console.log(students);
+            alert("Thêm sinh viên thành công");
+        }
+        function deleteStudent(students) {
+            let id = +prompt(`Nhập id bạn cần cập nhật`);
+            let studentIndex = students.findIndex((s) => {
+                return s.id === id;
+            });
+
+            if (studentIndex === -1) {
+                console.log("Không tìm thấy học sinh với id này");
+            } else {
+                let confirm = window.confirm("Bạn có muốn xoá không?");
+                if ((confirm = true)) {
+                    students[studentIndex] = {
+                        id: students[studentIndex].id,
+                        name: students[studentIndex].name,
+                        gpa: students[studentIndex].gpa,
+                        status: "inactive",
+                        age: students[studentIndex].age,
+                        createdAt: students[studentIndex].createdAt,
+                        updatedAt: students[studentIndex].updatedAt,
+                        deletedAt: new Date(),
+                    };
+                    alert(`Đã xoá thành công`);
+                    console.table(students);
+                }
+            }
+        }
+        function updateStudent(students) {
+            let id = +prompt("Nhập id cần sửa");
+            let studentIndex = students.findIndex((student) => student.id === id);
+            if (studentIndex == -1) {
+                console.log("Không tìm thấy học sinh với id này");
+            } else {
+                let newName = prompt("Nhập tên học sinh mới:");
+                let newAge = +prompt("Nhập tuổi mới:");
+                let newGpa = +prompt("Nhập GPA sinh viên:");
+                let newStatus = prompt("Nhập trạng thái sinh viên(active/inactive):");
+                let confirm = window.confirm("Bạn có muốn cập nhật không?");
+                if ((confirm = true)) {
+                    students[studentIndex] = {
+                        id: id,
+                        name: newName,
+                        gpa: newGpa,
+                        status: newStatus,
+                        age: newAge,
+                        createdAt: students[studentIndex].createdAt,
+                        updatedAt: new Date(),
+                        deletedAt: students[studentIndex].deletedAt,
+                    };
+                    alert("Đã cập nhật thành công!");
+                    console.table(students);
+                }
+            }
+        }
+        function restorStudent(students) {
+            let search = +prompt("Nhập ID cần tìm");
+            let check = students.findIndex((val) => {
+                return val.id === search;
+            });
+            if (check) {
+                students[check].status = "active";
+                students[check].deletedAt = null;
+                students[check].updatedAt = new Date();
+            }
+            console.table(students);
+        }
+        function searchByName() {
+            let search = prompt("Nhập tên học sinh cần tìm kiếm: ").toLowerCase();
+            let check = students.filter((val) => {
+                return val.name.toLowerCase().includes(search);
+            });
+            console.table(check);
+        }
+
+        function overviewStudent(students) {
+            let activeStudent = students.filter((e) => e.status === "active");
+            let inactiveStudent = students.filter((e) => e.status === "inactive");
+            console.log("========= OVERVIEW STUDENT ===========");
+            console.log("Tổng số sinh viên trong danh sách lớp", students.length);
+            console.log("Số sinh viên active:", activeStudent.length);
+            console.log("Số sinh viên inactive:", inactiveStudent.length);
+            console.log(
+                "Tỷ lệ số sinh viên active là:",
+                (activeStudent.length / students.length) * 100,
+                " %",
+            );
+            console.log(
+                "Tỷ lệ số sinh viên inactive là:",
+                (inactiveStudent.length / students.length) * 100,
+                " %",
+            );
+        }
+    </script>
+</body>
+
+</html>
