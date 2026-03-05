@@ -9,17 +9,19 @@ const product = [
 let renderProduct = (arr) => {
     let result = "";
     for (let i = 0; i < arr.length; i++) {
-        result += `<li class = "product-item">Tên: ${arr[i].name} Giá: ${arr[i].price.toLocaleString("vi-VN")} VND </li> <br>`;
+        result += `<li class = "product-item">Tên-${arr[i].name}-Giá-${arr[i].price.toLocaleString("vi-VN")} VND </li> <br>`;
     }
     document.getElementById("product-list").innerHTML = result;
 }
 renderProduct(product);
 
-document.getElementById("search-input").addEventListener("input", () => {
+document.getElementById("search-input").addEventListener("input", (e) => {
+    e.preventDefault();
     let keyword = document.getElementById("search-input").value;
     let result = document.querySelectorAll(".product-item");
+    console.log(result);
     result.forEach(c => {
-        let productName = c.textContent.toLowerCase();
+        let productName = c.textContent.toLowerCase().split("-")[1];
         if (productName.includes(keyword.toLowerCase())) {
             c.style.display = "";
         } else {
