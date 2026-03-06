@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #doList {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #doList li {
+            display: flex;
+            gap: 10px;
+            background-color: antiquewhite;
+            width: 300px;
+            height: 35px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .toDoItem.checked {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do List K24</h1>
+    <form action="" id="toDoList">
+        <input type="text" id="toDoInput" placeholder="Nhập công việc">
+        <button id="btn-add" onclick="addTask(toDoList, event)">Thêm</button>
+    </form>
+    <ul id="doList">
+    </ul>
+    <script>
+        let toDoList = [
+            { id: 1, name: "Học JS", completed: false },
+            { id: 2, name: "Học c++", completed: false },
+            { id: 3, name: "Học C#", completed: false },
+        ];
+        let size = toDoList.length;
+        renderTask();
+        function renderTask() {
+            let result = "";
+            toDoList.forEach(c => {
+                result += `
+                <li class = "toDoItem" data-id = "${c.id}" > 
+                <input type = "checkbox" ${c.completed ? "checked" : ""} class = "box" onclick = "checkBox(${c.id})" />
+                <span class = "toDoItem ${c.completed ? "checked" : ""}">${c.name}</span>
+                <button class = "btn-edit" >Sửa</button> 
+                <button class = "btn-delete" onclick = "deleteTask(${c.id})">Xóa</button></li>
+                `
+            });
+            document.getElementById("doList").innerHTML = result;
+        }
+        // cách tối ưu
+        // document.getElementById("btn-add").addEventListener("click", (e) => {
+        //     e.preventDefault();
+        //     let keyInput = document.getElementById("toDoInput");
+        //     let keyValue = keyInput.value;
+        //     console.log(keyValue);
+        //     keyInput.value = "";
+        // });
+        function addTask(arr, event) {
+            event.preventDefault();
+            console.log("Đã thêm công việc");
+            let key = document.getElementById("toDoInput").value;
+            if (key === "") {
+                alert("Không được để trống !");
+                document.getElementById("toDoInput").focus();
+                return;
+            }
+            let newTask = {
+                id: ++size,
+                name: key,
+                completed: false,
+            };
+            arr.push(newTask);
+            document.getElementById("toDoInput").value = "";
+            renderTask();
+        }
+        // Chức năng 3: xóa và sửa !;
+        // cách dùng element ad
+        // document.getElementById("doList").addEventListener("click", (e) => {
+        //     if(e.target.classList.contains("btn-delete")){
+        //         let index = +e.target.closest(".toDoItem").dataset.id;
+        //         console.log(index);
+        //         let taskIndex = toDoList.findIndex(c => c.id  === index);
+        //         toDoList.splice(taskIndex, 1);
+        //         renderTask();
+        //     }
+        // });
+        // cách bình thường
+        function deleteTask(index) {
+            let wannaToDelete;
+            let resultIndex = toDoList.findIndex(c => c.id === index);
+            wannaToDelete = window.confirm("Bạn có muốn xóa hay không ?");
+            if (wannaToDelete) {
+                toDoList.splice(resultIndex, 1);
+                renderTask();
+            }
+        }
+        function checkBox(index) {
+            let result = toDoList.findIndex(c => c.id === index);
+            toDoList[result].completed = !toDoList[result].completed;
+            renderTask();
+        }
+        document.getElementById("doList").addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn-edit")) {
+                let taskItem = e.target.closest(".toDoItem");
+                let idx = +taskItem.dataset.id;
+                let task = toDoList.find(c => c.id === idx);
+                taskItem.innerHTML = `
+                <input type="checkbox" 
+                   class="task-checkbox"
+                   ${task.completed ? "checked" : ""} />
+
+                <input type="text" 
+                   class="task-edit-input" 
+                   value="${task.name}" />
+
+                <button class="btn-save">💾 Lưu</button>
+                <button class="btn-cancel">❌ Hủy</button>`;
+            }
+            if(e.target.classList.contains("btn-save")){
+                let taskItems = e.target.closest(".toDoItem");
+                let id = +taskItems.dataset.id;
+                let task = toDoList.find(c => c.id === id);
+                let newName = document.querySelector(".task-edit-input").value;
+                if(newName === ""){
+                    alert("Tên không được để rỗng");
+                    return;
+                }
+                task.name = newName;
+                renderTask();
+            }
+            if(e.target.classList.contains("btn-cancel")){
+                renderTask();
+            }
+        });
+        document.getElementById("doList").addEventListener("keydown", (e) => {
+            if(e.key === "Enter" &&  e.target.classList.contains("task-edit-input")){
+                let taskItems = e.target.closest(".toDoItem");
+                let id = +taskItems.dataset.id;
+                let task = toDoList.find(c => c.id === id);
+                let newName = document.querySelector(".task-edit-input").value;
+                if(newName === ""){
+                    alert("Tên không được để rỗng");
+                    return;
+                }
+                task.name = newName;
+                renderTask();
+            }
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            display: flex;
+            width: 300px;
+            height: 100px;
+            flex-direction: column;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class = "container">
+        <button id="btn-up">Bấm vào tôi</button>
+        <div id="list">
+
+        </div>
+    </div>
+
+
+    <script>
+        let count = 0;
+        function render() {
+            document.getElementById("list").innerHTML = `
+            <p class = "btnCount">Số lên bấm <span id = "count">${count}</span></p>
+            `
+        }
+        render();
+        document.getElementById("btn-up").addEventListener("click", () => {
+            count++;
+            
+            render();
+        });
+    </script>
+</body>
+
+</html>

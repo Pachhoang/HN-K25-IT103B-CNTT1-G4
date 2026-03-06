@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3</title>
+</head>
+
+<body>
+    <form id="form-Subject">
+        <input type="text" id="input-item" placeholder="Nhập tên môn học">
+        <button type = "button" id="btn-add">Thêm môn học</button>
+    </form>
+    <h3>Danh sách môn học</h3>
+    <ol id="subject-list">
+
+    </ol>
+    <script>
+        let jubjectList = [
+            { id: 1, name: "Toán" },
+            { id: 2, name: "Lý" },
+            { id: 3, name: "Hóa" },
+        ];
+        function newId(params) {
+            let max = jubjectList[0].id;
+            jubjectList.forEach(c => {
+                if(c.id > max){
+                    max = c.id;
+                }
+            });
+            return max +1 ;
+        }
+        function renderSubject() {
+            let result = jubjectList.map(c => `<li>${c.name}</li>`).join("");
+            document.getElementById("subject-list").innerHTML = result;
+        }
+        renderSubject();
+        document.getElementById("btn-add").addEventListener("click", (e) => {
+            e.preventDefault();
+            let keyItem = document.getElementById("input-item");
+            let keyName = keyItem.value;
+            if (keyName === "") {
+                alert("Không được để rỗng");
+                keyItem.focus();
+                return;
+            }
+            let newProject = {
+                id: newId(jubjectList.length),
+                name: keyName,
+            }; 
+            jubjectList.push(newProject);
+            keyItem.value = "";
+            keyItem.focus();
+            
+            renderSubject();
+        });
+        // document.getElementById("input-item").addEventListener("keydown", (e) => {
+        //     e.preventDefault();
+        //     if(e.key === "Enter" ){
+        //         document.getElementById("btn-add").click();
+        //     }
+        // });
+    </script>
+</body>
+
+</html>

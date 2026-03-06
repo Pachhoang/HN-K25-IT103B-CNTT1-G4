@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+</head>
+<body>
+    <div id = "box" style= "width: 500px; height: 200px; border: 1px solid black; position: relative;">
+        <button id= "btn-change" style="position: absolute; top: 10px; left: 10px; background-color: white;">Đổi màu nền</button>
+    </div>
+    <script>
+        document.getElementById("btn-change").addEventListener("click", (e) => {
+            box = document.getElementById("box");
+            if(box.style.backgroundColor === "white"){
+                box.style.backgroundColor = "green";
+            }else{
+                box.style.backgroundColor = "white";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text" id = "input-email" placeholder="Nhập email">
+    <br>
+    <p id = "message"></p>
+    <button id = "btn-check">check Var</button>
+
+    <script>
+        document.getElementById("btn-check").addEventListener("click", (e) =>{
+            let keyItem = document.getElementById("input-email");
+            let message = document.getElementById("message");
+            if(keyItem.value.includes(" ")){
+                message.innerHTML = `
+                <span style = "color: red ">email không hợp lệ</span>`;
+                keyItem.value = "";
+                keyItem.focus();
+                return;
+            }
+            if(keyItem.value.includes("@gmail.com")){
+                message.innerHTML = `
+                <span style = "color: green ">email hợp lệ</span>`;
+            }else{
+                message.innerHTML = `
+                <span style = "color: red ">email không hợp lệ</span>`;
+            }
+            keyItem.value = "";
+            keyItem.focus();
+        });
+    </script>
+</body>
+</html>
