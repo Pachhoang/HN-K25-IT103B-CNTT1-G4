@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài 3</title>
+    <title>Bài 3+4+5+6</title>
     <style>
         * {
             padding: 0;
@@ -82,7 +82,7 @@
             align-items: center;
         }
 
-        .have:checked + h3{
+        .have:checked+h3 {
             text-decoration: line-through;
         }
 
@@ -92,7 +92,8 @@
             filter: brightness(0.95);
             /* animation: spin 0.2s linear infinite; */
         }
-        .btn{
+
+        .btn {
             outline: none;
             border: none;
             background-color: #fff8e2;
@@ -101,11 +102,13 @@
             cursor: pointer;
             transition: all 0.2s linear;
         }
-        .btn:hover{
+
+        .btn:hover {
             background-color: rebeccapurple;
             border-radius: 4px;
             transform: scale(1.2);
         }
+
         /* @keyframes spin{
             from{
                 transform: rotate(0deg);
@@ -144,12 +147,12 @@
             padding: 0 4px;
         }
 
-        .input-group input:focus+label{
+        .input-group input:focus+label {
             top: -8px;
             font-size: 12px;
             color: #d1ab50;
         }
-        
+
         /* .form--contener input:focus::placeholder{
             transform: translateY(10px);
         } */
@@ -169,16 +172,19 @@
             background-color: #d1ab50;
             transition: all 0.15s linear;
         }
-        .form--contener button:hover{
+
+        .form--contener button:hover {
             background-color: rgb(76, 41, 113);
             border: 2px solid rgb(51, 125, 148);
             box-shadow: 1px 1px 1px 1px rgb(66, 107, 86);
             color: white;
             transform: translateY(-5px) scale(calc(1.1));
         }
-        .btn--checked{
+
+        .btn--checked {
             text-decoration: line-through;
         }
+
         footer {
             display: flex;
             flex-direction: column;
@@ -191,6 +197,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Công việc chuẩn bị Tết</h1>
@@ -227,13 +234,16 @@
         if (!localStorage.getItem("initialTodos")) {
             localStorage.setItem("initialTodos", JSON.stringify(initialTodos));
         }
-        let todos = JSON.parse(localStorage.getItem("initialTodos")) || initialTodos;
+        let todos = JSON.parse(localStorage.getItem("initialTodos")) || [];
+
 
         let renderAllTask = () => {
             let line = "";
+
+
             todos.forEach(c => {
                 line += `
-             <div class="contener ${c.done ? "Checked" : ""}">
+             <div class="contener ${c.done ? "Checked" : ""}" data-id = "${c.id}">
                 <div class="badage">
                     <input type = "checkbox" ${c.done ? "checked" : ""}  class = "have" data-id = "${c.id}"/>
                     <h3>${c.task}</h3>
@@ -262,11 +272,11 @@
         document.querySelector(".btn--add").addEventListener("click", (e) => {
             e.preventDefault();
             let inputItem = document.getElementById("input--task");
-            if(inputItem.value.trim() === ""){
+            if (inputItem.value.trim() === "") {
                 alert("Công việc không được để trống !");
-            }else{
+            } else {
                 const newTask = {
-                    id: todos.length ? todos[todos.length -1].id + 1 : 1,
+                    id: todos.length ? todos[todos.length - 1].id + 1 : 1,
                     task: inputItem.value,
                     done: false,
                 }
@@ -276,6 +286,58 @@
                 renderAllTask();
             }
         });
+        document.querySelector(".toDoList").addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn--edit")) {
+                let content = e.target.closest(".contener");
+                let id = +content.dataset.id;
+                let taskItem = todos.find(c => c.id === id);
+                content.innerHTML = `
+                <div class="badage">
+                    <input type = "checkbox" ${taskItem.done ? "checked" : ""}  class = "have" data-id = "${taskItem.id}"/>
+                    <input type = "text" value = "${taskItem.task}" class  = "input--edit" />
+                </div>
+                <div class = "btn-decor" >
+                    <button class = "btn btn--edit ${taskItem.done ? "btn--checked" : ""}"  data-id = "${taskItem.id}">✏️</button>
+                    <button class = "btn btn--delete ${taskItem.done ? "btn--checked" : ""}" data-id = "${taskItem.id}">🗑️</button>
+                </div>
+                `;
+                content.querySelector(".input--edit").addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        let key = e.target;
+                        id = +e.target.closest(".contener").dataset.id;
+                        let taskOnly = todos.find(c => c.id === id);
+                        taskOnly.task = key.value;
+                        localStorage.setItem("initialTodos", JSON.stringify(todos));
+                        renderAllTask();
+                    }
+                    if (e.key === "Escape") {
+                        renderAllTask();
+                    }
+                });
+            }
+            if (e.target.classList.contains("btn--delete")) {
+                let id = +e.target.dataset.id;
+                let task = todos.find(c => c.id === id);
+                let wannaDelete = window.confirm(`Bạn có muốn xóa nhiệm vụ : ${task.task} hay không`);
+                if (wannaDelete) {
+                    todos = todos.filter(c => c.id !== id);
+                    localStorage.setItem("initialTodos", JSON.stringify(todos));
+                    renderAllTask();
+                } else {
+                    renderAllTask();
+                }
+            }
+            // renderAllTask();
+        });
+        document.querySelector(".btn--deleteAll").addEventListener("click", (e) => {
+            let wannaDeleteAll = window.confirm("Bạn có muốn xóa hết sản phẩm hay không ?");
+            if (wannaDeleteAll) {
+                localStorage.clear();
+                todos = JSON.parse(localStorage.getItem("initialTodos")) || [];
+                renderAllTask();
+            }
+        });
+
     </script>
 </body>
 
