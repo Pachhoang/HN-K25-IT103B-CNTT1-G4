@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chuẩn bị Tết Nguyên Đán</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fdf5e6;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 16px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 520px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background-color: #c0392b;
+        color: white;
+        text-align: center;
+        padding: 24px 20px;
+      }
+
+      .card-header h1 {
+        font-size: 26px;
+        margin-bottom: 4px;
+      }
+
+      .card-header p {
+        font-size: 15px;
+        opacity: 0.9;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .todo-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .todo-item {
+        background: #fff8f0;
+        border-left: 4px solid #e67e22;
+        border-radius: 10px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .todo-item.done {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
+
+      .todo-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .todo-icon {
+        font-size: 21px;
+      }
+
+      .todo-task {
+        font-size: 16px;
+        color: #333;
+      }
+
+      .todo-status {
+        font-size: 14px;
+        color: #999;
+        font-style: italic;
+      }
+
+      .card-footer {
+        text-align: center;
+        padding: 14px 20px;
+        font-size: 13px;
+        color: #aaa;
+        border-top: 1px solid #f0e0cc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header">
+        <h1>Chuẩn bị Tết Nguyên Đán</h1>
+        <p>Danh sách việc cần làm</p>
+      </div>
+      <div class="card-body">
+        <ul class="todo-list" id="todo-list"></ul>
+      </div>
+      <div class="card-footer" id="footer-msg"></div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
