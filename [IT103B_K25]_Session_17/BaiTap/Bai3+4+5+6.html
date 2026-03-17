@@ -122,6 +122,7 @@
             background-color: #fffee7;
             display: flex;
             gap: 20px;
+            align-items: center;
         }
 
         .input-group {
@@ -205,6 +206,7 @@
     </header>
     <main>
         <div class="form--contener">
+            <p id = "updateTask"></p>
             <div class="input-group">
                 <input type="text" id="input--task" required>
                 <label for="input--task">Nhập công việc mới...</label>
@@ -264,6 +266,7 @@
                     task.done = e.target.checked;
 
                     localStorage.setItem("initialTodos", JSON.stringify(todos));
+                    update();
                     renderAllTask();
                 });
             });
@@ -337,7 +340,13 @@
                 renderAllTask();
             }
         });
-
+        let taskUpdate = document.getElementById("updateTask");
+        function update(){
+            let allTask = todos.length;
+            let doneTask = todos.filter( c=> c.done === true).length;
+            taskUpdate.textContent = `Tổng công việc: ${allTask} | đã hoàn thành ${doneTask} (${((doneTask / allTask)*100).toFixed(0)}%)`;
+        }
+        update();
     </script>
 </body>
 
