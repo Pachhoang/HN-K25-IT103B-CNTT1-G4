@@ -8,7 +8,19 @@ const completedCountEl = document.getElementById("completedCount");
 const totalCountEl = document.getElementById("totalCount");
 const footerEl = document.getElementsByClassName("footer")[0];
 
+const saveToLocalStorage = () => {
+  localStorage.setItem("todoTasks", JSON.stringify(taskList));
+};
+
 const init = () => {
+  const savedTasks = localStorage.getItem("todoTasks");
+  if (savedTasks) {
+    taskList = JSON.parse(savedTasks);
+    if (taskList.length > 0) {
+      idCounter = Math.max(...taskList.map((t) => t.id)) + 1;
+    }
+  }
+
   renderList();
   addBtn.addEventListener("click", addTask);
   inputEl.addEventListener("keypress", (e) => {
@@ -30,6 +42,7 @@ const addTask = () => {
   inputEl.focus();
 
   renderList();
+  saveToLocalStorage();
 };
 
 const renderList = () => {
@@ -94,6 +107,7 @@ const toggleTask = (id) => {
   if (task) {
     task.completed = !task.completed;
     renderList();
+    saveToLocalStorage();
   }
 };
 
@@ -152,6 +166,7 @@ const saveTask = (id, newText) => {
   if (task) {
     task.text = trimmed;
     renderList();
+    saveToLocalStorage();
   }
 };
 
@@ -162,6 +177,7 @@ const deleteTask = (id) => {
   if (confirm(`Bạn có chắc chắn muốn xóa "${task.text}"?`)) {
     taskList = taskList.filter((t) => t.id !== id);
     renderList();
+    saveToLocalStorage();
   }
 };
 
