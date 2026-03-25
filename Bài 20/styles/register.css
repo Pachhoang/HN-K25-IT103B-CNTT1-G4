@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+span{
+    display: inline-block;
+    width: 120px;
+}
+.error-name{
+    color: red;
+    display: none;
+    margin-left: 120px;
+}
+.error-email{
+    color: red;
+    display: none;
+    margin-left: 120px;
+}
